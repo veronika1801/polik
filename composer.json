@@ -1,19 +1,20 @@
 {
-    "name": "jurapro/pop-it-mvc",
+    "name": "veronika1801/polik",
     "description": "Simple mvc framework",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
-            "name": "jurapro",
-            "email": "jurapro@yandex.ru"
+            "name": "veronika1801",
+            "email": "seversk.russia@gmail.com"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "php": "^7.4 | ^8.0",
-        "illuminate/database": "^11.0@dev",
-        "illuminate/events": "^11.0@dev"
+        "illuminate/events": "10.x-dev",
+        "illuminate/database": "^10.38"
+        
     },
     "autoload": {
         "psr-4": {
