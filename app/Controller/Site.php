@@ -1,20 +1,16 @@
 <?php
-
 namespace Controller;
-
-use Model\Post;
-use Src\View;
 
 class Site
 {
-   public function index(): string
+   public function index(): void
    {
-       $posts = Post::all();
-       return (new View())->render('site.post', ['posts' => $posts]);
+       echo 'working index';
    }
 
-   public function hello(): string
+   public function hello(): void
    {
-       return new View('site.hello', ['message' => 'hello working']);
+       echo 'working hello';
    }
 }
+
