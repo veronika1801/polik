@@ -32,7 +32,7 @@
 <header>
    <nav class="m-2">
       <div class="flex m-2 justify-around" >
-       <a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/hello') ?>">ГЛАВНАЯ</a>
+       <a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/home') ?>">ГЛАВНАЯ</a>
        
        <?php
        if (!app()->auth::check()):
@@ -45,8 +45,8 @@
        else:
            ?>
            
-           <a class=" flex justify-center gap-4 bg-gray-400 text-gray-200 m-2 p-2 rounded-full w-96 text-lg text-black"  href="<?= app()->route->getUrl('/logout') ?>">ВЫХОД (<?= app()->auth::user()->full_name ?>)</a>
-           <a class=" flex justify-center gap-4 bg-gray-400 text-gray-200 m-2 p-2 rounded-full w-96 text-lg text-black" href="<?= app()->route->getUrl('/profile') ?>">ПРОФИЛЬ</a>
+           <a class=" flex justify-center gap-4 bg-neutral-300  text-black m-2 p-2 rounded-full w-96 text-lg text-black"  href="<?= app()->route->getUrl('/logout') ?>">ВЫХОД (<?= app()->auth::user()->full_name ?>)</a>
+           <a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg text-black" href="<?= app()->route->getUrl('/profile') ?>">ПРОФИЛЬ</a>
            </div>
        <?php
        endif;

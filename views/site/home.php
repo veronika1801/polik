@@ -1,9 +1,9 @@
-<div>
-    <button>список пациентов</button>
-    <button>список врачей</button>
-    <button>список записей</button>
-    <button>добавить пациента</button>
-    <button>записать пациента</button>
-    <button>добавить врача</button>
-    <button>добавить нового сотрудника регистратуры</button>
+<div class="flex flex-col items-center">
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/list_patient') ?>">СПИСОК ПАЦИЕНТОВ</a>
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/list_doctor') ?>">СПИСОК ВРАЧЕЙ</a>
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/list_record') ?>">СПИСОК ЗАПИСЕЙ</a>
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/add_patient') ?>">ДОБАВИТЬ ПАЦИЕНТА</a>
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/add_record') ?>">ЗАПИСАТЬ ПАЦИЕНТА</a>
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/add_doctor') ?>">ДОБАВИТЬ ВРАЧА</a>
+<a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/add_employee') ?>">ДОБАВИТЬ СОТРУДНИКА РЕГИСТРАТУРЫ</a>
 </div>
