@@ -24,7 +24,7 @@ class Site
    public function signup(Request $request): string
 {
    if ($request->method === 'POST' && User::create($request->all())) {
-       app()->route->redirect('/go');
+       app()->route->redirect('/home');
    }
    return new View('site.signup');
 }
@@ -36,7 +36,7 @@ public function login(Request $request): string
    }
    //Если удалось аутентифицировать пользователя, то редирект
    if (Auth::attempt($request->all())) {
-       app()->route->redirect('/hello');
+       app()->route->redirect('/home');
    }
    //Если аутентификация не удалась, то сообщение об ошибке
    return new View('site.login', ['message' => 'Неправильные логин или пароль']);
@@ -76,14 +76,11 @@ public function list_record(Request $request): string{
    
     return (new View())->render('site.list_record');
 }
-public function main_admin(Request $request): string{
+public function home(Request $request): string{
    
-    return (new View())->render('site.main_admin');
+    return (new View())->render('site.home');
 }
-public function main_employee(Request $request): string{
-   
-    return (new View())->render('site.main_employee');
-}
+
 public function profile(Request $request): string{
    
     return (new View())->render('site.profile');
