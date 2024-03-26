@@ -48,6 +48,52 @@ public function logout(): void
    app()->route->redirect('/hello');
 }
 
-
-
+public function add_doctor(Request $request): string{
+   
+    return (new View())->render('site.add_doctor');
+}
+public function add_employee(Request $request): string{
+   
+    return (new View())->render('site.add_employee');
+}
+public function add_patient(Request $request): string{
+   
+    return (new View())->render('site.add_patient');
+}
+public function add_record(Request $request): string{
+   
+    return (new View())->render('site.add_record');
+}
+public function list_doctor(Request $request): string{
+   
+    return (new View())->render('site.list_doctor');
+}
+public function list_patient(Request $request): string{
+   
+    return (new View())->render('site.list_patient');
+}
+public function list_record(Request $request): string{
+   
+    return (new View())->render('site.list_record');
+}
+public function main_admin(Request $request): string{
+   
+    return (new View())->render('site.main_admin');
+}
+public function main_employee(Request $request): string{
+   
+    return (new View())->render('site.main_employee');
+}
+public function profile(Request $request): string{
+   
+    return (new View())->render('site.profile');
+}
+public function scan_doctor(Request $request): string{
+   
+    return (new View())->render('site.scan_doctor');
+}
+public function scan_patient(Request $request): string{
+   
+    return (new View())->render('site.scan_patient');
+}
 }
