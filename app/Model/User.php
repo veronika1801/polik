@@ -38,6 +38,17 @@ class User extends Model implements IdentityInterface
    {
        return $this->id;
    }
+   public function role() {
+    return $this->belongsTo(Role::class);
+}
+
+
+public function isAdmin() {
+    return $this->role_id == 1;
+}
+public function isEmployee() {
+    return $this->role_id == 2;
+}
 
    //Возврат аутентифицированного пользователя
    public function attemptIdentity(array $credentials)

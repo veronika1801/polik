@@ -3,14 +3,13 @@
 use Src\Route;
 
 Route::add('GET', '/hello', [Controller\Site::class, 'hello'])->middleware('auth');
-Route::add(['GET', 'POST'], '/signup', [Controller\Site::class, 'signup']);
+Route::add(['GET', 'POST'], '/signup', [Controller\Site::class, 'signup'])->middleware('auth', 'admin');
 Route::add(['GET', 'POST'], '/login', [Controller\Site::class, 'login']);
 Route::add('GET', '/logout', [Controller\Site::class, 'logout']);
 
-Route::add('GET', '/add_doctor', [Controller\Site::class, 'add_doctor'])->middleware('auth');
-
-Route::add('GET', '/add_patient', [Controller\Site::class, 'add_patient'])->middleware('auth');
-Route::add('GET', '/add_record', [Controller\Site::class, 'add_record'])->middleware('auth');
+Route::add('GET', '/add_doctor', [Controller\Site::class, 'add_doctor'])->middleware('auth', 'employee');
+Route::add('GET', '/add_patient', [Controller\Site::class, 'add_patient'])->middleware('auth', 'employee');
+Route::add('GET', '/add_record', [Controller\Site::class, 'add_record'])->middleware('auth', 'employee');
 Route::add('GET', '/list_doctor', [Controller\Site::class, 'list_doctor'])->middleware('auth');
 Route::add('GET', '/list_patient', [Controller\Site::class, 'list_patient'])->middleware('auth');
 Route::add('GET', '/list_record', [Controller\Site::class, 'list_record'])->middleware('auth');
