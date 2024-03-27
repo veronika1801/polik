@@ -5,5 +5,5 @@
    <input class=" flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg" type="password" name="password" placeholder="ПАРОЛЬ">
    <input class=" flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg" type="text" name="full_name" placeholder="ФИО">
    <input class=" flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg" type="file" name="avatar" accept="image/*" placeholder="АВАТАР">
-   <button class=" flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+   <button class=" flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg">ДОБАВИТЬ</button>
 </form>

@@ -39,7 +39,7 @@
            ?>
            
            <a class=" flex justify-center gap-4 bg-gray-400 bg-neutral-300 m-2 p-2 rounded-full w-96 text-lg text-black" href="<?= app()->route->getUrl('/login') ?>" >ВХОД</a>
-           <a class=" flex justify-center gap-4 bg-gray-400 bg-neutral-300 m-2 p-2 rounded-full w-96 text-lg text-black" href="<?= app()->route->getUrl('/signup') ?>">РЕГИСТРАЦИЯ</a>
+
            
        <?php
        else:
