@@ -139,10 +139,11 @@ public function home(Request $request): string{
     return (new View())->render('site.home');
 }
 
-public function profile(Request $request): string{
-   
-    return (new View())->render('site.profile');
-}
+public function profile(Request $request): string
+    {
+        $user = Auth::user(); 
+        return new View('site.profile', ['user' => $user]);
+    }
 public function scan_doctor(Request $request): string{
    
     return (new View())->render('site.scan_doctor');
