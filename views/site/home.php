@@ -8,7 +8,6 @@
     ?>
     <a class=" flex justify-center gap-4 bg-neutral-300 text-black m-2 p-2 rounded-full w-96 text-lg"  href="<?= app()->route->getUrl('/signup') ?>">ДОБАВИТЬ СОТРУДНИКА РЕГИСТРАТУРЫ</a>
 
-
     <?php
         else:
     ?>

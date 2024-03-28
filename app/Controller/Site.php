@@ -1,12 +1,18 @@
 <?php
 
 namespace Controller;
+
 use Src\Request;
 use Model\Post;
 use Src\View;
 use Model\User;
 use Src\Auth\Auth;
 use Src\Validator\Validator;
+use Model\Doctor;
+use Model\Patient;
+use Model\Record;
+
+
 
 
 class Site
@@ -83,17 +89,18 @@ public function add_record(Request $request): string{
    
     return (new View())->render('site.add_record');
 }
-public function list_doctor(Request $request): string{
-   
-    return (new View())->render('site.list_doctor');
+public function list_doctor(Request $request): string
+{
+    $Doctors = Doctor::all();
+    return (new View())->render('site.list_doctor', ['Doctors' => $Doctors]);
 }
 public function list_patient(Request $request): string{
-   
-    return (new View())->render('site.list_patient');
+    $Patients = Patient::all();
+    return (new View())->render('site.list_patient', ['Patients' => $Patients]);
 }
 public function list_record(Request $request): string{
-   
-    return (new View())->render('site.list_record');
+    $Records = Record::all();
+    return (new View())->render('site.list_record', ['Records' => $Records]);
 }
 public function home(Request $request): string{
    
