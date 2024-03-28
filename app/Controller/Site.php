@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Model\Information;
 use Src\Request;
 use Model\Post;
 use Src\View;
@@ -75,7 +76,16 @@ public function logout(): void
 
 public function add_doctor(Request $request): string{
    
-    return (new View())->render('site.add_doctor');
+    if ($request->method === 'GET') {
+        return new View('site.add_doctor');
+    }
+
+    if (Doctor::create($request->all())) {
+        app()->route->redirect('/list_doctor');
+        
+    }
+
+    return (new View())->render('site.list_doctor');
 }
 public function add_employee(Request $request): string{
    
@@ -83,11 +93,33 @@ public function add_employee(Request $request): string{
 }
 public function add_patient(Request $request): string{
    
-    return (new View())->render('site.add_patient');
+    if ($request->method === 'GET') {
+        return new View('site.add_patient');
+    }
+
+    if (Patient::create($request->all())) {
+        app()->route->redirect('/list_patient');
+        
+    }
+
+    return (new View())->render('site.list_patient');
 }
 public function add_record(Request $request): string{
-   
-    return (new View())->render('site.add_record');
+    
+
+    if ($request->method === 'GET') {
+        $Doctors = Doctor::all();
+        $Patients = Patient::all();
+        $Information = Information::all();
+        return new View('site.add_record', ['Doctors' => $Doctors, 'Patients' => $Patients, 'Information' => $Information]);
+    }
+
+    if (Record::create($request->all())) {
+        app()->route->redirect('/list_record');
+        
+    }
+
+    return (new View())->render('site.list_doctor');
 }
 public function list_doctor(Request $request): string
 {

@@ -12,7 +12,7 @@ foreach ($Records as $Record) {
     echo "<p class=\"m-4\">ПАЦИЕНТ: $patient_name </p> <br>";
     echo "<p class=\"m-4\">КАБИНЕТ: $information_cabinet </p> <br>";
     echo "<p class=\"m-4\">ПРИЧИНА: $information_causes </p><br>";
-    echo "<p class=\"m-4\">ДАТА И ВРЕМЯ ПРИЕМА: $information_date </p><br>";
+    echo "<p class=\"m-4\">ДАТА ПРИЕМА: $information_date </p><br>";
     echo "<button class=\" flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg\">ОТМЕНИТЬ</button>";
     echo "</div>";
 }

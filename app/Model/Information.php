@@ -11,6 +11,11 @@ class Information extends Model
    use HasFactory;
 
    public $timestamps = false;
+   protected $fillable = [
+    'causes',
+    'date',
+    'cabinet'
+];
    
    public function record()
    {
