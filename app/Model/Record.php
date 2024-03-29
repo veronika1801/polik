@@ -14,7 +14,9 @@ class Record extends Model
    protected $fillable = [
        'doctor_id',
        'patient_id',
-       'information_id'
+       'causes',
+       'date',
+       'cabinet'
    ];
    public function doctor()
    {
@@ -24,8 +26,5 @@ class Record extends Model
    {
        return $this->belongsTo(Patient::class);
    }
-   public function information()
-   {
-       return $this->belongsTo(Information::class);
-   }
+
 }

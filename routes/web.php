@@ -19,3 +19,6 @@ Route::add('GET', '/scan_doctor', [Controller\Site::class, 'scan_doctor'])->midd
 Route::add('GET', '/scan_patient', [Controller\Site::class, 'scan_patient'])->middleware('auth');
 
 
+Route::add('GET', '/deleteRecord', [Controller\Site::class, 'deleteRecord'])->middleware('auth');
+
+

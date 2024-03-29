@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Model\Information;
+
 use Src\Request;
 use Model\Post;
 use Src\View;
@@ -18,6 +18,7 @@ use Model\Record;
 
 class Site
 {
+    private $upload_dir = __DIR__ . '/../../public/images/';
     public function index(Request $request): string
     {
        $posts = Post::where('id', $request->id)->get();
@@ -110,9 +111,9 @@ public function add_record(Request $request): string{
     if ($request->method === 'GET') {
         $Doctors = Doctor::all();
         $Patients = Patient::all();
-        $Information = Information::all();
-        return new View('site.add_record', ['Doctors' => $Doctors, 'Patients' => $Patients, 'Information' => $Information]);
+        return new View('site.add_record', ['Doctors' => $Doctors, 'Patients' => $Patients]);
     }
+    
 
     if (Record::create($request->all())) {
         app()->route->redirect('/list_record');
@@ -152,4 +153,10 @@ public function scan_patient(Request $request): string{
    
     return (new View())->render('site.scan_patient');
 }
+public function deleteRecord(Request $request): string
+    {
+        Record::where("records.id", $request->get('id'))->delete();
+        app()->route->redirect('/list_record');
+        return "";
+    }
 }
