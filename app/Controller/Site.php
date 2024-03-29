@@ -12,7 +12,7 @@ use Src\Validator\Validator;
 use Model\Doctor;
 use Model\Patient;
 use Model\Record;
-
+use Src\Validator\AbstractValidator;
 
 
 
@@ -32,6 +32,7 @@ class Site
    }
    public function signup(Request $request): string
    {
+    
       if ($request->method === 'POST') {
    
           $validator = new Validator($request->all(), [
@@ -42,15 +43,36 @@ class Site
             'required' => 'Поле :field обязательное',
             'unique' => 'Поле :field должно быть уникально'
         ]);
+        
+        
    
           if($validator->fails()){
               return new View('site.signup',
                   ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-          }        
+          }      
+          if(isset($_POST["login"])){
+            $full_name = $_POST["login"];
+        if(!$full_name){
+            return new View('site.signup', ['message' => 'НАПИШИТЕ ЛОГИН ']);
+        }
+        }
+        if(isset($_POST["password"])){
+            $password = $_POST["password"];
+        if(!$password){
+            return new View('site.signup', ['message' => 'НАПИШИТЕ ПАРОЛЬ ']);
+        }
+        }
+        if(isset($_POST["full_name"])){
+            $full_name = $_POST["full_name"];
+        if(!$full_name){
+            return new View('site.signup', ['message' => 'НАПИШИТЕ ФИО ']);
+        }
+        }
+          
           if (isset($_FILES["avatar"])) {
             $avatar = $_FILES["avatar"];
             if (!$avatar['name']) {
-                return new View('site.signup', ['message' => 'Не выбрано изображение']);
+                return new View('site.signup', ['message' => 'ВЫБЕРЕТЕ АВАТАР ']);
             }
 
    
@@ -61,7 +83,7 @@ class Site
 
 
             if (!in_array($mime, $types)) {
-                return new View('site.signup', ['message' => 'Не поддерживаемый тип изображения']);
+                return new View('site.signup', ['message' => 'ВЫБЕРЕТЕ ДОПУСТИМЫЙ ФОРМАТ ИЗОБРАЖЕНИЯ']);
             }
 
             $name = mt_rand(0, 10000) . $avatar['name'];
@@ -73,6 +95,10 @@ class Site
             ...$request->all(),
             'avatar' => "/images/$name"
         ]);
+        
+        if (!$User) {
+            $view = new View('site.signup', ['message' => 'failed']);
+        }
    
         
       }
