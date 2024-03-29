@@ -1,5 +1,6 @@
 <div class="grid grid-cols-3 content-start ">
 <?php
+$scanPatient = app() -> route -> getUrl('/scan_patient');
 foreach ($Doctors as $Doctors) {
     $position_name = $Doctors->position["title"];
     $specialization_name = $Doctors->specialization["name"];
@@ -8,7 +9,11 @@ foreach ($Doctors as $Doctors) {
     echo "<p class=\"m-4\">ДАТА РОЖДЕНИЯ: $Doctors[date_of_birth]</p> <br>";
     echo "<p class=\"m-4\">ДОЛЖНОСТЬ: $position_name</p> <br>";
     echo "<p class=\"m-4\">СПЕЦИАЛИЗАЦИЯ: $specialization_name</p> <br>";
-    echo "<a class=\"flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg\"  href=\"/scan_patient\">ПАЦИЕНТЫ</a>";
+    
+    echo "<form method=\"GET\" action=\"$scanPatient\" class=\"flex justify-center gap-4 bg-neutral-300 text-black m-4 p-2 rounded-full w-96 text-lg\">
+    <input type=\"hidden\" name=\"id\" value=\"$Doctors[id]\">
+    <button>ПАЦИЕНТЫ</button>
+    </form>";
     echo "</div>";
 }
 ?>

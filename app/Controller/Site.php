@@ -35,13 +35,13 @@ class Site
       if ($request->method === 'POST') {
    
           $validator = new Validator($request->all(), [
-              'full_name' => ['required'],
-              'login' => ['required', 'unique:users,login'],
-              'password' => ['required']
-          ], [
-              'required' => 'Поле :field пусто',
-              'unique' => 'Поле :field должно быть уникально'
-          ]);
+            'full_name' => ['required', 'length:1,255'],
+            'login' => ['required', 'length:1,255', 'unique:users,login'],
+            'password' => ['required', 'length:1,255'],
+        ], [
+            'required' => 'Поле :field обязательное',
+            'unique' => 'Поле :field должно быть уникально'
+        ]);
    
           if($validator->fails()){
               return new View('site.signup',
@@ -170,10 +170,22 @@ public function profile(Request $request): string
         return new View('site.profile', ['user' => $user]);
     }
 public function scan_doctor(Request $request): string{
+    if ($request->method === 'GET') {
+        Record::where("records.id", $request->get('id'));
+        $Patients = Patient::all();
+        $Records = Record::all();
+        return new View('site.scan_patient', ['Patients' => $Patients, 'Records' => $Records]);
+    }
    
     return (new View())->render('site.scan_doctor');
 }
 public function scan_patient(Request $request): string{
+    if ($request->method === 'GET') {
+        Record::where("records.id", $request->get('id'));
+        $Doctors = Doctor::all();
+        $Records = Record::all();
+        return new View('site.scan_patient', ['Doctors' => $Doctors, 'Records' => $Records]);
+    }
    
     return (new View())->render('site.scan_patient');
 }
