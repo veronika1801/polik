@@ -46,11 +46,35 @@ class Site
           if($validator->fails()){
               return new View('site.signup',
                   ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
-          }
+          }        
+          if (isset($_FILES["avatar"])) {
+            $avatar = $_FILES["avatar"];
+            if (!$avatar['name']) {
+                return new View('site.signup', ['message' => 'Не выбрано изображение']);
+            }
+
    
-          if (User::create($request->all())) {
-              app()->route->redirect('/login');
-          }
+
+            $getMime = explode('.', $avatar['name']);
+            $mime = strtolower(end($getMime));
+            $types = array('jpg', 'png', 'jpeg', 'webp');
+
+
+            if (!in_array($mime, $types)) {
+                return new View('site.signup', ['message' => 'Не поддерживаемый тип изображения']);
+            }
+
+            $name = mt_rand(0, 10000) . $avatar['name'];
+            copy($avatar['tmp_name'], "$this->upload_dir/$name");
+        }
+
+
+        $User = User::create([
+            ...$request->all(),
+            'avatar' => "/images/$name"
+        ]);
+   
+        
       }
       return new View('site.signup');
    }
@@ -158,5 +182,27 @@ public function deleteRecord(Request $request): string
         Record::where("records.id", $request->get('id'))->delete();
         app()->route->redirect('/list_record');
         return "";
+    }
+
+
+
+
+    public function Search(Request $request)
+    {
+        $search = $request->get('search');
+
+        if ($search) {
+            $search = strtoupper($search);
+
+            $Patient = Patient::whereRaw(
+                "UPPER(full_name) LIKE '%" . $search . "%'"
+            )->get();
+        } else {
+                $Patient = Patient::all();
+        }
+
+        return (new View())->render('site.search', ['Patient' => $Patient]);
+        
+
     }
 }

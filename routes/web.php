@@ -22,3 +22,5 @@ Route::add('GET', '/scan_patient', [Controller\Site::class, 'scan_patient'])->mi
 Route::add('GET', '/deleteRecord', [Controller\Site::class, 'deleteRecord'])->middleware('auth');
 
 
+
+Route::add('GET', '/search', [Controller\Site::class, 'search'])->middleware('auth');
