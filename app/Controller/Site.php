@@ -12,6 +12,8 @@ use Src\Validator\Validator;
 use Model\Doctor;
 use Model\Patient;
 use Model\Record;
+use Model\News;
+use Model\Group;
 use Src\Validator\AbstractValidator;
 use pack;
 
@@ -19,7 +21,29 @@ use pack;
 
 class Site
 {
+
     private $upload_dir = __DIR__ . '/../../public/images/';
+
+    public function add_News(Request $request): string{
+
+        if ($request->method === 'GET') {
+            return new View('site.add_News');
+        }
+        
+    
+        if (News::create([...$request->all(), "user_id" => Auth::user()["id"]])) {
+            app()->route->redirect('/list_News');
+            
+        }
+
+        return (new View())->render('site.list_News');
+    }
+
+    public function list_News(Request $request): string{
+        $News = News::all();
+        return (new View())->render('site.list_News', ['News' => $News]);
+    }
+    
     public function index(Request $request): string
     {
        $posts = Post::where('id', $request->id)->get();
@@ -178,6 +202,24 @@ public function list_doctor(Request $request): string
     $Doctors = Doctor::all();
     return (new View())->render('site.list_doctor', ['Doctors' => $Doctors]);
 }
+public function list_tur(Request $request): string
+{
+    $Groups = Group::all();
+    return (new View())->render('site.list_tur', ['Groups' => $Groups]);
+}
+public function add_tur(Request $request): string{
+   
+    if ($request->method === 'GET') {
+        return new View('site.add_tur');
+    }
+
+    if (Group::create($request->all())) {
+        app()->route->redirect('/list_tur');
+        
+    }
+
+    return (new View())->render('site.list_tur');
+}
 public function list_patient(Request $request): string{
     $Patients = Patient::all();
     return (new View())->render('site.list_patient', ['Patients' => $Patients]);
@@ -244,4 +286,6 @@ public function deleteRecord(Request $request): string
         
 
     }
+
+    
 }

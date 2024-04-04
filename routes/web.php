@@ -24,3 +24,10 @@ Route::add('GET', '/deleteRecord', [Controller\Site::class, 'deleteRecord'])->mi
 
 
 Route::add('GET', '/search', [Controller\Site::class, 'search'])->middleware('auth');
+
+Route::add(['GET', 'POST'], '/add_News', [Controller\Site::class, 'add_News'])->middleware('auth');   
+
+Route::add('GET', '/list_News', [Controller\Site::class, 'list_News'])->middleware('auth');   
+
+Route::add('GET', '/list_tur', [Controller\Site::class, 'list_tur']);
+Route::add(['GET', 'POST'], '/add_tur', [Controller\Site::class, 'add_tur']);
